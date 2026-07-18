@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
 import axios from "axios";
+import { QRCodeSVG } from "qrcode.react";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -15,6 +16,7 @@ const Dashboard = () => {
 
   const [urls, setUrls] = useState<Url[]>([]);
   const [fetchingUrls, setFetchingUrls] = useState(true);
+  const [qrVisibleFor, setQrVisibleFor] = useState<string | null>(null);
 
   const backendBaseUrl = import.meta.env.VITE_API_URL;
 
@@ -63,6 +65,10 @@ const Dashboard = () => {
   //write a handle copy function
   const handleCopy = (shortCode: string) => {
     navigator.clipboard.writeText(`${backendBaseUrl}/${shortCode}`);
+  };
+
+  const toggleQr = (id: string) => {
+    setQrVisibleFor((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -129,17 +135,34 @@ const Dashboard = () => {
                     >
                       {backendBaseUrl}/{url.shortCode}
                     </a>
-                    <button
-                      onClick={() => handleCopy(url.shortCode)}
-                      className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 rounded px-2 py-1"
-                    >
-                      Copy
-                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => toggleQr(url._id)}
+                        className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 rounded px-2 py-1"
+                      >
+                        {qrVisibleFor === url._id ? "Hide QR" : "Show QR"}
+                      </button>
+                      <button
+                        onClick={() => handleCopy(url.shortCode)}
+                        className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 rounded px-2 py-1"
+                      >
+                        Copy
+                      </button>
+                    </div>
                   </div>
                   <p className="text-sm text-gray-500 truncate">
                     {url.originalUrl}
                   </p>
                   <p className="text-xs text-gray-400">{url.clicks} clicks</p>
+
+                  {qrVisibleFor === url._id && (
+                    <div className="mt-2 p-3 bg-gray-50 rounded-lg flex justify-center">
+                      <QRCodeSVG
+                        value={`${backendBaseUrl}/${url.shortCode}`}
+                        size={128}
+                      />
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
