@@ -72,102 +72,111 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-10">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <Card>
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">
-            Shorten a URL
-          </h1>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 px-6 lg:px-12   py-10 transition-colors">
+      <div className="max-w-full  grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+        <div className="lg:col-span-2">
+          <Card>
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+              Shorten a URL
+            </h1>
 
-          {error && (
-            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
-              {error}
-            </div>
-          )}
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
 
-          <form onSubmit={handleSubmit}>
-            <Input
-              label="Long URL"
-              id="originalUrl"
-              type="url"
-              placeholder="https://example.com/very-long-link"
-              value={originalUrl}
-              onChange={(e) => setOriginalUrl(e.target.value)}
-              required
-            />
-            <Input
-              label="Custom Alias (optional)"
-              id="customAlias"
-              type="text"
-              placeholder="my-custom-link"
-              value={customAlias}
-              onChange={(e) => setCustomAlias(e.target.value)}
-            />
+            <form onSubmit={handleSubmit}>
+              <Input
+                label="Long URL"
+                id="originalUrl"
+                type="url"
+                placeholder="https://example.com/very-long-link"
+                value={originalUrl}
+                onChange={(e) => setOriginalUrl(e.target.value)}
+                required
+              />
+              <Input
+                label="Custom Alias (optional)"
+                id="customAlias"
+                type="text"
+                placeholder="my-custom-link"
+                value={customAlias}
+                onChange={(e) => setCustomAlias(e.target.value)}
+              />
 
-            <Button type="submit" disabled={loading}>
-              {loading ? "Creating..." : "Shorten URL"}
-            </Button>
-          </form>
-        </Card>
+              <Button type="submit" disabled={loading}>
+                {loading ? "Creating..." : "Shorten URL"}
+              </Button>
+            </form>
+          </Card>
+        </div>
+        <div className="lg:col-span-3">
+          <Card>
+            <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+              Your Links
+            </h2>
 
-        <Card>
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Your Links</h2>
-
-          {fetchingUrls ? (
-            <p className="text-gray-500 text-sm">Loading your links...</p>
-          ) : urls.length === 0 ? (
-            <p className="text-gray-500 text-sm">
-              You haven't created any links yet.
-            </p>
-          ) : (
-            <ul className="space-y-3">
-              {urls.map((url) => (
-                <li
-                  key={url._id}
-                  className="border border-gray-200 rounded-lg p-3 flex flex-col gap-1"
-                >
-                  <div className="flex items-center justify-between">
-                    <a
-                      className="text-blue-600 font-medium hover:underline"
-                      href={`${backendBaseUrl}/${url.shortCode}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {backendBaseUrl}/{url.shortCode}
-                    </a>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => toggleQr(url._id)}
-                        className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 rounded px-2 py-1"
+            {fetchingUrls ? (
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
+                Loading your links...
+              </p>
+            ) : urls.length === 0 ? (
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
+                You haven't created any links yet.
+              </p>
+            ) : (
+              <ul className="space-y-3">
+                {urls.map((url) => (
+                  <li
+                    key={url._id}
+                    className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 flex flex-col gap-1"
+                  >
+                    <div className="flex items-center justify-between">
+                      <a
+                        href={`${backendBaseUrl}/${url.shortCode}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
                       >
-                        {qrVisibleFor === url._id ? "Hide QR" : "Show QR"}
-                      </button>
-                      <button
-                        onClick={() => handleCopy(url.shortCode)}
-                        className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 rounded px-2 py-1"
-                      >
-                        Copy
-                      </button>
+                        {backendBaseUrl}/{url.shortCode}
+                      </a>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => toggleQr(url._id)}
+                          className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-300 dark:border-gray-600 rounded px-2 py-1"
+                        >
+                          {qrVisibleFor === url._id ? "Hide QR" : "Show QR"}
+                        </button>
+                        <button
+                          onClick={() => handleCopy(url.shortCode)}
+                          className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-300 dark:border-gray-600 rounded px-2 py-1"
+                        >
+                          Copy
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-sm text-gray-500 truncate">
-                    {url.originalUrl}
-                  </p>
-                  <p className="text-xs text-gray-400">{url.clicks} clicks</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                      {url.originalUrl}
+                    </p>
+                    <p className="text-xs text-gray-400 dark:text-gray-500">
+                      {url.clicks} clicks
+                    </p>
 
-                  {qrVisibleFor === url._id && (
-                    <div className="mt-2 p-3 bg-gray-50 rounded-lg flex justify-center">
-                      <QRCodeSVG
-                        value={`${backendBaseUrl}/${url.shortCode}`}
-                        size={128}
-                      />
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </Card>
+                    {qrVisibleFor === url._id && (
+                      <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg flex justify-center">
+                        <QRCodeSVG
+                          value={`${backendBaseUrl}/${url.shortCode}`}
+                          size={128}
+                        />
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+        </div>
       </div>
     </div>
   );
