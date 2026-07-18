@@ -36,9 +36,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 transition-colors">
       <Card>
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">Welcome Back</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+          Welcome Back
+        </h1>
 
         {error && (
           <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
@@ -69,7 +71,7 @@ const Login = () => {
           </Button>
         </form>
 
-        <p className="mt-4 text-sm text-gray-600 text-center">
+        <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
           Don't have an account?{" "}
           <Link to="/register" className="text-blue-600 hover:underline">
             Register

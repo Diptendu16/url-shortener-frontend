@@ -37,9 +37,9 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 transition-colors">
       <Card>
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
           Create an Account
         </h1>
 
@@ -80,7 +80,7 @@ const Register = () => {
           </Button>
         </form>
 
-        <p className="mt-4 text-sm text-gray-600 text-center">
+        <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-600 hover:underline">
             Login
