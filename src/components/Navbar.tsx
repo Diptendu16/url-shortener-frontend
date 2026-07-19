@@ -20,7 +20,7 @@ const Navbar = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-sm px-6 py-2.5 transition-colors">
+    <nav className="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-sm px-6 py-7 transition-colors">
       <div className="flex items-center justify-between">
         <Link
           to="/"
