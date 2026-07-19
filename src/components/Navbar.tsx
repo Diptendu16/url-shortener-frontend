@@ -20,33 +20,33 @@ const Navbar = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-sm px-6 py-7 transition-colors">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#03045E] shadow-sm px-6 py-6.5 transition-colors">
       <div className="flex items-center justify-between">
         <Link
           to="/"
-          className="text-xl font-bold text-blue-600 dark:text-blue-400"
+          className="text-xl font-bold text-[#0077B6] dark:text-[#48CAE4]"
         >
           <span className="hidden sm:inline">URL Shortener</span>
           <span className="sm:hidden">U</span>
         </Link>
 
         {/* Desktop menu */}
-        <div className="hidden sm:flex items-center gap-8">
+        <div className="hidden sm:flex items-center gap-6">
           <button
             onClick={toggleDarkMode}
-            className="text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded px-2 py-1"
+            className="text-[#023E8A] dark:text-[#ADE8F4] border border-[#90E0EF] dark:border-[#0077B6] rounded px-2 py-1"
           >
             {darkMode ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
           {user ? (
             <>
-              <span className="text-sm text-gray-600 dark:text-gray-300">
+              <span className="text-sm text-[#023E8A] dark:text-[#ADE8F4]">
                 Hi, {user.name}
               </span>
               <Link
                 to="/dashboard"
-                className="text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-sm text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4]"
               >
                 Dashboard
               </Link>
@@ -61,13 +61,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/login"
-                className="text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-sm text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4]"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-sm text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4]"
               >
                 Register
               </Link>
@@ -78,7 +78,7 @@ const Navbar = () => {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
-          className="sm:hidden text-gray-700 dark:text-gray-200"
+          className="sm:hidden text-[#023E8A] dark:text-[#ADE8F4]"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -89,7 +89,7 @@ const Navbar = () => {
         <div className="sm:hidden mt-4 flex flex-col gap-4 pb-2">
           <button
             onClick={toggleDarkMode}
-            className="text-left text-sm text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 flex items-center gap-2 w-fit"
+            className="text-left text-sm text-[#023E8A] dark:text-[#ADE8F4] border border-[#90E0EF] dark:border-[#0077B6] rounded px-3 py-2 flex items-center gap-2 w-fit"
           >
             {darkMode ? <Sun size={16} /> : <Moon size={16} />}
             {darkMode ? "Light Mode" : "Dark Mode"}
@@ -97,13 +97,13 @@ const Navbar = () => {
 
           {user ? (
             <>
-              <span className="text-sm text-gray-600 dark:text-gray-300">
+              <span className="text-sm text-[#023E8A] dark:text-[#ADE8F4]">
                 Hi, {user.name}
               </span>
               <Link
                 to="/dashboard"
                 onClick={closeMenu}
-                className="text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-sm text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4]"
               >
                 Dashboard
               </Link>
@@ -119,14 +119,14 @@ const Navbar = () => {
               <Link
                 to="/login"
                 onClick={closeMenu}
-                className="text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-sm text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4]"
               >
                 Login
               </Link>
               <Link
                 to="/register"
                 onClick={closeMenu}
-                className="text-sm text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-sm text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4]"
               >
                 Register
               </Link>

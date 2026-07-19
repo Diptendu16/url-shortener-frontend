@@ -72,11 +72,11 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 px-6 lg:px-12   py-10 transition-colors">
+    <div className="min-h-screen bg-[#CAF0F8] dark:bg-[#03045E] px-6 lg:px-16 py-10 transition-colors">
       <div className="max-w-full  grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
         <div className="lg:col-span-2">
           <Card>
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+            <h1 className="text-2xl font-bold text-[#03045E] dark:text-[#CAF0F8] mb-6">
               Shorten a URL
             </h1>
 
@@ -113,16 +113,16 @@ const Dashboard = () => {
         </div>
         <div className="lg:col-span-3">
           <Card>
-            <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+            <h2 className="text-xl font-bold text-[#03045E] dark:text-[#CAF0F8] mb-4">
               Your Links
             </h2>
 
             {fetchingUrls ? (
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
+              <p className="text-[#023E8A] dark:text-[#ADE8F4] text-sm">
                 Loading your links...
               </p>
             ) : urls.length === 0 ? (
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
+              <p className="text-[#023E8A] dark:text-[#ADE8F4] text-sm">
                 You haven't created any links yet.
               </p>
             ) : (
@@ -130,41 +130,41 @@ const Dashboard = () => {
                 {urls.map((url) => (
                   <li
                     key={url._id}
-                    className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 flex flex-col gap-1"
+                    className="border border-[#90E0EF] dark:border-[#0077B6] rounded-lg p-3 flex flex-col gap-1"
                   >
                     <div className="flex items-center justify-between">
                       <a
                         href={`${backendBaseUrl}/${url.shortCode}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
+                        className="text-[#0077B6] dark:text-[#48CAE4] font-medium hover:underline"
                       >
                         {backendBaseUrl}/{url.shortCode}
                       </a>
                       <div className="flex gap-2">
                         <button
                           onClick={() => toggleQr(url._id)}
-                          className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-300 dark:border-gray-600 rounded px-2 py-1"
+                          className="text-xs text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4] border border-[#90E0EF] dark:border-[#0077B6] rounded px-2 py-1"
                         >
                           {qrVisibleFor === url._id ? "Hide QR" : "Show QR"}
                         </button>
                         <button
                           onClick={() => handleCopy(url.shortCode)}
-                          className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-300 dark:border-gray-600 rounded px-2 py-1"
+                          className="text-xs text-[#023E8A] dark:text-[#ADE8F4] hover:text-[#0077B6] dark:hover:text-[#48CAE4] border border-[#90E0EF] dark:border-[#0077B6] rounded px-2 py-1"
                         >
                           Copy
                         </button>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                    <p className="text-sm text-[#023E8A] dark:text-[#ADE8F4] truncate">
                       {url.originalUrl}
                     </p>
-                    <p className="text-xs text-gray-400 dark:text-gray-500">
+                    <p className="text-xs text-[#0077B6] dark:text-[#48CAE4]">
                       {url.clicks} clicks
                     </p>
 
                     {qrVisibleFor === url._id && (
-                      <div className="mt-2 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg flex justify-center">
+                      <div className="mt-2 p-3 bg-[#CAF0F8] dark:bg-[#03045E] rounded-lg flex justify-center">
                         <QRCodeSVG
                           value={`${backendBaseUrl}/${url.shortCode}`}
                           size={128}
