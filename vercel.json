@@ -1,12 +1,12 @@
 {
-    "rewrites": [
+    "routes": [
         {
-            "source": "/api/:path*",
-            "destination": "https://url-shortener-backend-3ez9.onrender.com/api/:path*"
+            "src": "/api/(.*)",
+            "dest": "https://url-shortener-backend-3ez9.onrender.com/api/$1"
         },
         {
-            "source": "/((?!api/).*)",
-            "destination": "/index.html"
+            "src": "/(.*)",
+            "dest": "/index.html"
         }
     ]
 }
