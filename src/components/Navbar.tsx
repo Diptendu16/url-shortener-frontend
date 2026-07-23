@@ -26,7 +26,7 @@ const Navbar = () => {
           to="/"
           className="text-xl font-bold text-[#0077B6] dark:text-[#48CAE4]"
         >
-          <span className="hidden sm:inline">URL Shortener</span>
+          <span className="hidden sm:inline">Shortify</span>
           <span className="sm:hidden">U</span>
         </Link>
 

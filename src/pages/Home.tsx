@@ -33,7 +33,7 @@ const Home = () => {
           to={user ? "/dashboard" : "/register"}
           className="bg-[#00B4D8] hover:bg-[#0096C7] text-white font-semibold px-8 py-3 rounded-lg transition-colors"
         >
-          {user ? "Go to Dashboard" : "Get Started Free"}
+          {user ? "Go to Dashboard" : "Get Started"}
         </Link>
       </section>
 
@@ -187,7 +187,7 @@ const Home = () => {
         </Link>
 
         <p className="text-xs text-[#023E8A]/60 mt-10">
-          © {new Date().getFullYear()} URL Shortener. Built as a full-stack
+          © {new Date().getFullYear()} Shortify. Built as a full-stack
           learning project.
         </p>
       </footer>
