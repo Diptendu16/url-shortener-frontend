@@ -1,11 +1,11 @@
 {
     "rewrites": [
         {
-            "source": "/api/(.*)",
-            "destination": "https://url-shortener-backend-3ez9.onrender.com/api/$1"
+            "source": "/api/:path*",
+            "destination": "https://url-shortener-backend-3ez9.onrender.com/api/:path*"
         },
         {
-            "source": "/(.*)",
+            "source": "/((?!api/).*)",
             "destination": "/index.html"
         }
     ]
